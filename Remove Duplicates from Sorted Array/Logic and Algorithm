@@ -1,0 +1,180 @@
+You are given a sorted array that contains duplicate numbers.
+
+Example:
+
+nums = [0,0,1,1,1,2,2,3,3,4]
+
+You need to:
+
+Remove duplicate values in-place.
+Keep only one copy of each number.
+Return the number of unique values k.
+The first k positions of nums must contain the unique values.
+
+So:
+
+Before:
+[0,0,1,1,1,2,2,3,3,4]
+
+
+After:
+[0,1,2,3,4,_,_,_,_,_]
+
+Here:
+
+k = 5
+
+The _ values don't matter.
+
+2. Important observation
+
+The array is already sorted.
+
+That means all duplicates are next to each other.
+
+For example:
+
+[1, 1, 2, 2, 3, 3, 4]
+ ↑  ↑
+duplicates together
+
+So we don't need to search the whole array for duplicates.
+
+We only need to compare:
+
+current number
+      vs
+previous unique number
+3. Simple logic
+
+We will use two pointers:
+
+Pointer 1 → i
+
+This pointer moves through the array and checks every element.
+
+Pointer 2 → k
+
+This tells us where to put the next unique number.
+
+Initially:
+
+k = 1
+
+Why?
+
+Because the first element is always unique.
+
+Example
+nums = [1,1,2,2,3]
+
+Initially:
+
+k = 1
+
+
+[1, 1, 2, 2, 3]
+ ↑
+unique position
+
+Now start checking from index 1.
+
+Step 1
+
+Compare:
+
+nums[1] = 1
+nums[k-1] = nums[0] = 1
+
+Same → duplicate.
+
+So ignore it.
+
+Step 2
+
+Now:
+
+nums[2] = 2
+nums[k-1] = nums[0] = 1
+
+Different → new unique number.
+
+Put 2 at nums[k].
+
+nums[k] = nums[2]
+
+
+nums[1] = 2
+
+Array becomes conceptually:
+
+[1,2,2,2,3]
+   ↑
+
+Then:
+
+k = k + 1
+
+So:
+
+k = 2
+Step 3
+
+Check next 2:
+
+nums[3] = 2
+nums[k-1] = nums[1] = 2
+
+Same → duplicate.
+
+Ignore.
+
+Step 4
+
+Check 3:
+
+nums[4] = 3
+nums[k-1] = nums[1] = 2
+
+Different → unique.
+
+Put it at:
+
+nums[k] = nums[2]
+
+So:
+
+[1,2,3,2,3]
+     ↑
+
+Finally:
+
+k = 3
+
+First 3 elements are:
+
+[1,2,3]
+
+That's the answer.
+
+4. Algorithm
+
+Very simple:
+
+1. Set k = 1
+
+
+2. Start i from index 1
+
+
+3. For every nums[i]:
+
+
+      If nums[i] != nums[k-1]:
+
+
+          nums[k] = nums[i]
+          k = k + 1
+
+
+4. Return k
