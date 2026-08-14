@@ -1,0 +1,19 @@
+1. Simple Logic
+
+We know the majority element appears more than n/2 times.
+
+Think of the array as a voting/cancellation game:
+
+Pick one number as the candidate.
+
+If we see the same number, it gets +1 vote.
+If we see a different number, it gets -1 vote.
+
+When the count becomes 0, choose the next number as the new candidate.
+Since the majority element is guaranteed to exist, the final candidate is the answer.
+
+
+Remember:
+Same number      → count + 1
+Different number → count - 1
+count == 0       → new candidate
