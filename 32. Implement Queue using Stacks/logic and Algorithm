@@ -1,0 +1,9 @@
+Core Logic
+
+Pushing: Add every new element directly to s1.
+
+Reversing Order: Transferring elements from s1 to s2 reverses their order. The element at the bottom of s1 (the oldest element) ends up at the top of s2.
+
+Lazy Transfer: Elements stay in s1 until a read or removal operation (peek or pop) occurs.
+
+Transfers only happen when s2 is completely empty to preserve the FIFO order of previously transferred items.
